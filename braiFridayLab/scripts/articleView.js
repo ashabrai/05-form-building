@@ -78,7 +78,9 @@ articleView.setTeasers = () => {
 // On the new.html page, because this renders the new page to load.
 articleView.initNewArticlePage = () => {
   $('.tab-content').show();
-  articleView.create();
+  // articleView.create();
+
+  $('#export-field').hide();
 
   $('#article-json').on('focus', function(){
     this.select();
@@ -94,35 +96,33 @@ articleView.create = () => {
 
   $('#articles').html('');
 
-  let post= new Article({
-    author: $('#author').val(),
-    authorUrl: $('#authorUrl').val(),
-    title: $('#title').val(),
-    category: $('category').val(),
-    body: $('#body').val(),
-    publishedOn: $('#article-published:checked').length ? new Date() : null,
-  });
+  // let post= new Article({
+  //   author: $('#author').val(),
+  //   authorUrl: $('#authorUrl').val(),
+  //   title: $('#title').val(),
+  //   category: $('category').val(),
+  //   body: $('#body').val(),
+  //   publishedOn: $('#published:checked').length ? new Date() : null,
+
 
   // TODO: Instantiate an article based on what's in the form fields:
-  // let post = new Article(article);
-  // article.title = $('#title').val();
-  // article.author = $('#author').val();
-  // article.category = $('#category').val();
-  // article.authorUrl =$('#authorUrl').val();
-  // article.body = $('#body').val();
+  article.title = $('#title').val();
+  article.author = $('#author').val();
+  article.category = $('#category').val();
+  article.authorUrl =$('#authorUrl').val();
+  article.body = $('#body').val();
+  article.publishedOn = $('#published:checked').length ? new Date() : null;
+
+  let post = new Article(article);
   // console.log(article);
-
   
-
   $('#articles').html( post.toHtml() );
-
-  $('pre code').each();
   $('pre code').each(function(i, block){
     hljs.highlightBlock(block);
-  })
+  });
   // TODO: Show our export field, and export the new article as JSON, so it's ready to copy/paste into blogArticles.js:
-  $('#export-container').show();
-  $('#article-json').val(JSON).val(JSON.stringify(article) + ',');
+  $('#export-field').show();
+  $('#article-json').val(JSON.stringify(article) + ',');
 
 };
 

@@ -53,7 +53,10 @@
           <input id ="author" name="author" placeholder="Author Name" />
           <input id ="authorUrl" name="authorUrl" placeholder="Author Url" />
           <input id ="category" name="category" placeholder="Category Name" />
+          <input type ="checkbox" id= "published" name="feature" value ="published">
+          <label for ="published">Published</label>
           <textarea id="body" name="body" placeholder="Article Content Here"></textarea>
+          
         </form>
         
 
@@ -82,8 +85,8 @@
       </section>
 
       <section id="article-export">
-        <label id="export-container" class="right-box">
-          <input type="text" id="article-json" readonly />
+        <label id="export-field" class="right-box" for = "article-json">
+          <input type="text" id="article-json" />
           Copy and paste this and put into the DB
         </label>
       </section>
@@ -100,7 +103,7 @@
     <script src="scripts/article.js"></script>
     <script src="scripts/articleView.js"></script>
     <script>
-      articleView.initNewArticlePage()
+      articleView.initNewArticlePage();
    
 
       // COMMENT: What is this function doing? Why do we need it?
